@@ -26,6 +26,7 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(self.solution.romanToInt('LVIII'), 58)
         self.assertEqual(self.solution.romanToInt('MCMXCIV'), 1994)
 
+
 test = TestSolution()
 test.setUp()
 test.test_roman_to_int()
