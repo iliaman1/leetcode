@@ -1,4 +1,3 @@
-from typing import Optional
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -7,24 +6,19 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        res = []
-        while list1 != None or list2 != None:
-            if list1 == None:
-                res.append(list2.val)
-                list2 = list2.next
-            elif list2 == None:
-                res.append(list1.val)
-                list1 = list1.next
-            elif list1.val <= list2.val:
-                res.append(list1.val)
+        res = temp_head = ListNode()
+        while list1 and list2:
+            if list1.val <= list2.val:
+                temp_head.next = list1
                 list1 = list1.next
             else:
-                res.append(list2.val)
+                temp_head.next = list2
                 list2 = list2.next
-        return res
+            temp_head = temp_head.next
 
-if __name__ == '__main__':
-    test = Solution()
-    assert test.mergeTwoLists([1,2,4],[1,3,4]) == [1,1,2,3,4,4], "равные списки не прошли"
-    assert test.mergeTwoLists([], []) == [], "пустые списки не прошли"
-    assert test.mergeTwoLists([], [0]) == [0], "один пустой, другой нет не прошло"
+        if list1:
+            temp_head.next = list1
+        if list2:
+            temp_head.next = list2
+
+        return res.next
