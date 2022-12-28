@@ -1,16 +1,14 @@
+def strbin_to_int(string: str) -> int:
+    res = 0
+    for razr9d, number in enumerate(string[::-1]):
+        res += int(number) * 2 ** razr9d
+    return res
+
+
 def addBinary(a: str, b: str) -> str:
-    res_numb_a = 0
-    stepen_a = 0
-    res_numb_b = 0
-    stepen_b = 0
-    for digit in a:
-        res_numb_a += int(digit) * 2**stepen_a
-        stepen_a += 1
-    for digit in b:
-        res_numb_b += int(digit) * 2**stepen_b
-        stepen_b += 1
-
-    return str(bin(int(res_numb_a)+int(res_numb_b))).replace('0b', '')
+    return str(bin(strbin_to_int(a) + strbin_to_int(b))).replace('0b', '')
 
 
-print(addBinary('1010', '1011'))
+if __name__ == '__main__':
+    assert addBinary('11', '1') == "100", 'failed test 1'
+    assert addBinary('1010', '1011') == "10101", 'failed test 2'
