@@ -6,30 +6,37 @@ def mySqrt(x: int) -> int:
     ostatok = None
     need_multiplu = None
     prev_res = 0
+    tmp_ostatok = None
     for i in lst_x:
         j = 0
         if ostatok:
             i = int(str(ostatok)+str(i))
         if need_multiplu:
-            while int(str(prev_res)+str(j)) * 2 <= i:
-                if int(str(prev_res)+str(j)) * 2 <= i:
+            while int(str(need_multiplu)+str(j)) * j <= i:
+                tmp_ostatok = ostatok
+                if int(str(need_multiplu)+str(j)) * j <= i:
                     prev_res = j
-                    ostatok = i - prev_res
+                    tmp_ostatok = i - int(str(need_multiplu)+str(j)) * j
                 j += 1
+            ostatok = tmp_ostatok
         else:
             while j * j <= i:
                 if j * j <= i:
                     prev_res = j
-                    ostatok = i - prev_res
+                    ostatok = i - prev_res * prev_res
                 j += 1
 
         res.append(prev_res)
         need_multiplu = prev_res*2
+        print(i)
+        print(prev_res)
+        print(ostatok)
+        print(need_multiplu, '\n')
 
-    return res
+    return int(''.join([res[i] for i in range(len(res)) if res[i] < 10]))
 
 
-print(mySqrt(81))
+print(mySqrt(101761))
 # if __name__ == '__main__':
 #     assert mySqrt(4) == 2, 'failed test 1'
 #     assert mySqrt(8) == 2, 'failed test 2'
