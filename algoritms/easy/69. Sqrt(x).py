@@ -1,42 +1,34 @@
 def mySqrt(x: int) -> int:
     string_x = str(x)
-    lst_x = [int(string_x[i:i + 2]) for i in range(0, len(string_x), 2)] if len(string_x) % 2 == 0 else [
-        int(string_x[::-1][i:i + 2]) for i in range(0, len(string_x), 2)][::-1]
+    lst_x = [string_x[i:i + 2] for i in range(0, len(string_x), 2)] if len(string_x) % 2 == 0 else [
+        string_x[0]]+[string_x[i:i + 2] for i in range(1, len(string_x), 2)]
     res = []
-    ostatok = None
+    remainder = 0
     need_multiplu = None
-    prev_res = None
-    tmp_ostatok = None
+    tmp_remainder = None
     for i in lst_x:
+        i = int(str(remainder)+str(i))
         j = 0
-        if ostatok:
-            i = int(str(ostatok)+str(i))
-        if need_multiplu:
-            while int(str(need_multiplu)+str(j)) * j <= i:
-                tmp_ostatok = ostatok
-                if int(str(need_multiplu)+str(j)) * j <= i:
-                    prev_res = j
-                    tmp_ostatok = i - int(str(need_multiplu)+str(j)) * j
-                j += 1
-            ostatok = tmp_ostatok
-        else:
+        if not need_multiplu:
             while j * j <= i:
-                if j * j <= i:
-                    prev_res = j
-                    ostatok = i - prev_res * prev_res
                 j += 1
+            res.append(j-1)
+            need_multiplu = (j-1)*2
+            remainder = i - ((j-1) * (j-1))
+        else:
+            while int(str(need_multiplu) + str(j)) * j <= i:
+                tmp_remainder = remainder
+                if int(str(need_multiplu) + str(j)) * j <= i:
+                    tmp_remainder = i - (int(str(need_multiplu) + str(j)) * j)
+                j += 1
+            res.append(j-1)
+            remainder = tmp_remainder
+            need_multiplu = int(''.join([str(i) for i in res])) * 2
 
-        res.append(prev_res)
-        need_multiplu = prev_res*2
-        print(ostatok)
-        print(need_multiplu)
-        print(prev_res)
-        print(res)
-
-    return int(''.join([str(res[i]) for i in range(len(res)) if res[i] < 10]))
+    return int(''.join([str(i) for i in res if i < 10]))
 
 
-print(mySqrt(2147395599))
-# if __name__ == '__main__':
-#     assert mySqrt(2147395599) == 46339, 'failed test 1'
-#     assert mySqrt(8) == 2, 'failed test 2'
+if __name__ == '__main__':
+    assert mySqrt(2147395599) == 46339, 'failed test 1'
+    assert mySqrt(183692038) == 13553, 'failed test 2'
+    assert mySqrt(808909662) == 28441, 'failed test 3'
