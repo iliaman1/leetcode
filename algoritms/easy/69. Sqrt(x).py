@@ -5,7 +5,7 @@ def mySqrt(x: int) -> int:
     res = []
     ostatok = None
     need_multiplu = None
-    prev_res = 0
+    prev_res = None
     tmp_ostatok = None
     for i in lst_x:
         j = 0
@@ -28,15 +28,15 @@ def mySqrt(x: int) -> int:
 
         res.append(prev_res)
         need_multiplu = prev_res*2
-        print(i)
-        print(prev_res)
         print(ostatok)
-        print(need_multiplu, '\n')
+        print(need_multiplu)
+        print(prev_res)
+        print(res)
 
-    return int(''.join([res[i] for i in range(len(res)) if res[i] < 10]))
+    return int(''.join([str(res[i]) for i in range(len(res)) if res[i] < 10]))
 
 
-print(mySqrt(101761))
+print(mySqrt(2147395599))
 # if __name__ == '__main__':
-#     assert mySqrt(4) == 2, 'failed test 1'
+#     assert mySqrt(2147395599) == 46339, 'failed test 1'
 #     assert mySqrt(8) == 2, 'failed test 2'
