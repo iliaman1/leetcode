@@ -28,6 +28,23 @@ def mySqrt(x: int) -> int:
     return int(''.join([str(i) for i in res if i < 10]))
 
 
+# good solution
+# def mySqrt(x: int) -> int:
+#     left, right = 1, x
+#     if x < 2:
+#         return x
+#     while left < right:
+#         middle = (left + right) // 2
+#         target = round(middle * middle)
+#         if x < target:
+#             right = middle
+#         elif x > target:
+#             left = middle + 1
+#         else:
+#             return middle
+#     return left - 1
+
+
 if __name__ == '__main__':
     assert mySqrt(2147395599) == 46339, 'failed test 1'
     assert mySqrt(183692038) == 13553, 'failed test 2'
