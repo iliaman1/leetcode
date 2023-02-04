@@ -6,7 +6,7 @@ def majorityElement(nums: List[int]) -> int:
     return Counter(nums).most_common()[0][0]
 
 
-#good solution
+# good solution
 # def majorityElement(self, nums: List[int]) -> int:
 #     x = len(nums)
 #     n = len(nums) // 2
