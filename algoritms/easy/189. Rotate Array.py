@@ -1,6 +1,4 @@
-def rotate(self, nums: list[int], k: int) -> None:
-    """
-    Do not return anything, modify nums in-place instead.
-    """
+def rotate(nums: list[int], k: int) -> None:
+    k = k if len(nums) > k else k % len(nums)
     for _ in range(k):
         nums.insert(0, nums.pop())
