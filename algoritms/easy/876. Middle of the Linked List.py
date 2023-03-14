@@ -9,8 +9,8 @@ class ListNode:
 
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        pointer1 = pointer2 = head
-        while pointer2 and pointer2.next:
-            pointer1 = pointer1.next
-            pointer2 = pointer2.next.next
-        return pointer1
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
