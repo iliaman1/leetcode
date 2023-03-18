@@ -1,9 +1,10 @@
 from collections import Counter
 
+
 def findTheDifference(s: str, t: str) -> str:
     s = Counter(s)
     t = Counter(t)
-    res = t-s
+    res = t - s
 
     return ''.join(res.keys())
 
