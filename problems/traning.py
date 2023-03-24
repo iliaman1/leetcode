@@ -20,16 +20,37 @@ class ListNode:
         self.next = next
 
 
-class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head or not head.next:
-            return head
-
-        me_useles = head.next.next
-        temp = head
-        head = head.next
-        temp.next = head.next
-        head.next = temp
-        temp.next = self.swapPairs(me_useles)
-
+def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head or not head.next:
         return head
+
+    me_useles = head.next.next
+    temp = head
+    head = head.next
+    temp.next = head.next
+    head.next = temp
+    temp.next = self.swapPairs(me_useles)
+
+    return head
+
+
+def reverseList1(head: Optional[ListNode]) -> Optional[ListNode]:
+    current = head
+    prev = None
+    while current:
+        nxt = current.next
+        current.next = prev
+        prev = current
+        current = nxt
+
+    return prev
+
+def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head:
+        return head
+
+    new_head = reverseList(head.next)
+    head.next.next = head
+    head.next = None
+    return new_head
+
