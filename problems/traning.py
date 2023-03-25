@@ -13,6 +13,14 @@ def reverseString(s: list[str]) -> None:
     s.insert(0, temp)
 
 
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -45,6 +53,7 @@ def reverseList1(head: Optional[ListNode]) -> Optional[ListNode]:
 
     return prev
 
+
 def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
     if not head:
         return head
@@ -54,3 +63,13 @@ def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
     head.next = None
     return new_head
 
+
+def searchBST(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    if root.val == val:
+        return root
+
+    if root.left:
+        return searchBST(root.left, val)
+
+    if root.right:
+        return searchBST(root.right, val)
