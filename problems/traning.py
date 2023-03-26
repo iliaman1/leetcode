@@ -1,4 +1,7 @@
-from typing import Optional
+from typing import Optional, List
+from math import factorial
+from functools import reduce
+from operator import mul
 
 
 def reverseString(s: list[str]) -> None:
@@ -73,3 +76,23 @@ def searchBST(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
 
     if root.right:
         return searchBST(root.right, val)
+
+# не будем пересчитывать факториал, через хелпер  а = числитель, б = знаменатель, ц = текущий шаг
+def getRow(rowIndex: int) -> List[int]:
+    return [1] + [reduce(mul, [rowIndex - j for j in range(i)]) // factorial(i) for i in range(1, rowIndex + 1)]
+
+
+lst = []
+def get_row(row: int) -> List[int]:
+    if row == 1:
+        return [1]
+    row -= 1
+    getRow(row)
+
+
+    lst.append()
+
+
+# functools.reduce(operator.mul, [n - i for i in range(n)], 1) // math.factorial(n)
+
+print(getRow(4))
