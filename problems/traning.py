@@ -77,22 +77,42 @@ def searchBST(root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
     if root.right:
         return searchBST(root.right, val)
 
+
 # не будем пересчитывать факториал, через хелпер  а = числитель, б = знаменатель, ц = текущий шаг
 def getRow(rowIndex: int) -> List[int]:
-    return [1] + [reduce(mul, [rowIndex - j for j in range(i)]) // factorial(i) for i in range(1, rowIndex + 1)]
+    result = [1]
+    current_factorial = 1
+    current_numerator = rowIndex
+    for i in range(1, rowIndex + 1):
+        result.append(current_numerator // current_factorial)
+        current_numerator *= (rowIndex - i)
+        current_factorial *= i + 1
+
+    return result
+
+
+# [1] + [reduce(mul, [rowIndex - j for j in range(i)]) // factorial(i) for i in range(1, rowIndex + 1)]
 
 
 lst = []
-def get_row(row: int) -> List[int]:
-    if row == 1:
+
+
+def get_row(row: int) -> List[List[int]]:
+    if row == 0:
+        return []
+    elif row == 1:
         return [1]
-    row -= 1
-    getRow(row)
-
-
-    lst.append()
+    else:
+        new_row = [1]
+        result = get_row(row - 1)
+        last_row = result[-1]
+        for i in range(len(last_row) - 1):
+            new_row.append(last_row[i] + last_row[i + 1])
+        new_row += [1]
+        result.append(new_row)
+    return result
 
 
 # functools.reduce(operator.mul, [n - i for i in range(n)], 1) // math.factorial(n)
 
-print(getRow(4))
+print(get_row(4))
