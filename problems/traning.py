@@ -111,24 +111,24 @@ def get_row(row: int) -> List[int]:
     return [1] + result
 
 
-# class Solution:
-#     @staticmethod
 def caching(func):
     cache = {}
 
     def wrapper(*args, **kwargs):
-        if args[0] in cache:
-            return cache[args[0]]
-        cache[args[0]] = func(args[0])
+        if args[1] in cache:
+            return cache[args[1]]
+        cache[args[1]] = func(args[0], args[1])
         print(cache)
-        return func(args[0])
+        return func(args[0], args[1])
 
     return wrapper
 
 
-@caching
-def fib(n: int) -> int:
-    return n * n
+class SolutionFib:
 
+    @caching
+    def fib(self, n: int) -> int:
+        if n < 2:
+            return n
 
-print(list(map(fib, [1, 2, 3, 4, 5, 2, 3])))
+        return self.fib(n - 1) + self.fib(n - 2)
