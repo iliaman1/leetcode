@@ -124,7 +124,7 @@ def caching(func):
     return wrapper
 
 
-class SolutionFib:
+class FibSolution:
 
     @caching
     def fib(self, n: int) -> int:
@@ -132,3 +132,16 @@ class SolutionFib:
             return n
 
         return self.fib(n - 1) + self.fib(n - 2)
+
+
+class ClimbStairsSolution:
+    @caching
+    def climb_stairs(self, n: int) -> int:
+        if n < 3:
+            return n
+
+        return self.climb_stairs(n - 1) + self.climb_stairs(n - 2)
+
+
+test = ClimbStairsSolution()
+print(test.climb_stairs(4))
