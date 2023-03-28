@@ -111,6 +111,24 @@ def get_row(row: int) -> List[int]:
     return [1] + result
 
 
-# functools.reduce(operator.mul, [n - i for i in range(n)], 1) // math.factorial(n)
+# class Solution:
+#     @staticmethod
+def caching(func):
+    cache = {}
 
-print(get_row(5))
+    def wrapper(*args, **kwargs):
+        if args[0] in cache:
+            return cache[args[0]]
+        cache[args[0]] = func(args[0])
+        print(cache)
+        return func(args[0])
+
+    return wrapper
+
+
+@caching
+def fib(n: int) -> int:
+    return n * n
+
+
+print(list(map(fib, [1, 2, 3, 4, 5, 2, 3])))
