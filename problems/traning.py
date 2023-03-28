@@ -97,22 +97,20 @@ def getRow(rowIndex: int) -> List[int]:
 lst = []
 
 
-def get_row(row: int) -> List[List[int]]:
+def get_row(row: int) -> List[int]:
     if row == 0:
         return []
     elif row == 1:
         return [1]
-    else:
-        new_row = [1]
-        result = get_row(row - 1)
-        last_row = result[-1]
-        for i in range(len(last_row) - 1):
-            new_row.append(last_row[i] + last_row[i + 1])
-        new_row += [1]
-        result.append(new_row)
-    return result
+    elif row == 2:
+        return [1, 1]
+
+    result = get_row(row - 1)
+    for i in range(len(result) - 1):
+        result[i] = result[i] + result[i + 1]
+    return [1] + result
 
 
 # functools.reduce(operator.mul, [n - i for i in range(n)], 1) // math.factorial(n)
 
-print(get_row(4))
+print(get_row(5))
