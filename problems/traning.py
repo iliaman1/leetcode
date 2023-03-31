@@ -143,6 +143,22 @@ class ClimbStairsSolution:
         return self.climb_stairs(n - 1) + self.climb_stairs(n - 2)
 
 
-class Solution:
+class SolutionMaxDepth:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         return 0 if root == None else max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+
+
+def myPow(x: float, n: int) -> float:
+    if n == 0:
+        return 1.0
+    if n > 0:
+        if n == 1:
+            return x
+        return x * myPow(x, n - 1)
+    if n < 0:
+        if n == -1:
+            return 1/x
+        return 1 / (x * myPow(x, n + 1))
+
+
+print(myPow(2, -2))
