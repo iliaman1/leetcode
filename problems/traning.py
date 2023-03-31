@@ -149,16 +149,19 @@ class SolutionMaxDepth:
 
 
 def myPow(x: float, n: int) -> float:
+    if x == 0:
+        return 0
+
     if n == 0:
         return 1.0
-    if n > 0:
-        if n == 1:
-            return x
-        return x * myPow(x, n - 1)
-    if n < 0:
-        if n == -1:
-            return 1/x
-        return 1 / (x * myPow(x, n + 1))
+
+    if n == 1:
+        return n
+
+    result = myPow(x, abs(n//2))
+    result *= result
+
+    return result if n >= 0 else 1 / result
 
 
-print(myPow(2, -2))
+print(myPow(2, 2))
