@@ -143,5 +143,6 @@ class ClimbStairsSolution:
         return self.climb_stairs(n - 1) + self.climb_stairs(n - 2)
 
 
-test = ClimbStairsSolution()
-print(test.climb_stairs(4))
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        return 0 if root == None else max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
