@@ -182,5 +182,22 @@ def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optio
         return list1 or list2
 
 
+class Solution:
+    def kringe(self, number) -> list[int]:
+        if number == 1:
+            return [1, 0]
+        if number == 0:
+            return [0, 1]
 
+    def kthGrammar(self, n: int, k: int) -> int:
+        def find_row(n: int) -> list[int]:
+            if n == 1:
+                return [0]
+            res = []
+            for i in find_row(n - 1):
+                res += self.kringe(i)
+            return res
+        return find_row(n)[k-1]
 
+def isMonotonic(nums: List[int]) -> bool:
+    return nums == sorted(nums) or nums == sorted(nums, reverse=True)
