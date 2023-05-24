@@ -8,8 +8,7 @@ from collections import Counter
 
 
 def can_construct(ransom_note: str, magazine: str) -> bool:
-    print(Counter(ransom_note).items(), Counter(magazine).items())
-    return Counter(ransom_note).items() in Counter(magazine).items()
+    return Counter(ransom_note) <= Counter(magazine)
 
 
 print(can_construct('a', 'b'))
