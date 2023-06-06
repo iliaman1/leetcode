@@ -1,7 +1,29 @@
+from random import choices
+from string import ascii_lowercase, digits
 from typing import Optional, List
 from math import factorial
 from functools import reduce
 from operator import mul
+
+urls = {k: v for v, k in enumerate(ascii_lowercase)}
+values = ascii_lowercase + digits
+
+
+def encode(longUrl: str) -> str:
+    while (
+            tiny := ''.join(
+                choices(values, k=len(urls) // len(values) + 1)
+            )
+    ) in urls:
+        continue
+
+    urls[tiny] = longUrl
+
+    return tiny
+
+
+for _ in range(40):
+    print(encode("https://leetcode.com/problems/design-tinyurl"))
 
 
 def reverseString(s: list[str]) -> None:
