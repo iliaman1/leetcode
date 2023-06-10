@@ -24,3 +24,4 @@ if __name__ == '__main__':
     assert solution.minimumLengthEncoding(["time", "me", "bell"]) == 10
     assert solution.minimumLengthEncoding(["t"]) == 2
     assert solution.minimumLengthEncoding(["me", "time"]) == 5
+    assert solution.minimumLengthEncoding(["p", "grah", "qwosp"]) == 11
