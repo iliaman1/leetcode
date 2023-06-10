@@ -1,4 +1,5 @@
 from typing import List
+from operator import itemgetter
 
 
 class Solution:
@@ -6,12 +7,9 @@ class Solution:
         def encode(words: List[str]) -> str:
             res = ''
             index = 0
+            words.sort(key=lambda x: len(x), reverse=True)
             while index < len(words):
-                if index + 1 < len(words) and (
-                        words[index].endswith(words[index + 1]) or words[index + 1].endswith(words[index])):
-                    res += words[index] + '#' if words[index].endswith(words[index + 1]) else words[index + 1] + '#'
-                    index += 1
-                else:
+                if words[index] + '#' not in res:
                     res += words[index] + '#'
                 index += 1
             return res
