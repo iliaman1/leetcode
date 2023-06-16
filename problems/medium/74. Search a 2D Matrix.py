@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        rows, column = len(matrix)-1, len(matrix[0])
+        rows, column = len(matrix) - 1, len(matrix[0])
 
         row_index = -1
 
