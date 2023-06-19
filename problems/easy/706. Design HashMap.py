@@ -1,24 +1,17 @@
+from collections import defaultdict
+
+
 class MyHashMap:
 
     def __init__(self):
-        self.my_map = []
+        self.mp = defaultdict(lambda: -1)
 
     def put(self, key: int, value: int) -> None:
-        for index, element in enumerate(self.my_map):
-            if element[0] == key:
-                element[1] = value
-                return
-
-        self.my_map.append([key, value])
+        self.mp[key] = value
 
     def get(self, key: int) -> int:
-        for m_key, value in self.my_map:
-            if m_key == key:
-                return value
-        return -1
+        return self.mp[key]
 
     def remove(self, key: int) -> None:
-        for index, element in enumerate(self.my_map):
-            if element[0] == key:
-                del self.my_map[index]
-                break
+        if key in self.mp:
+            del self.mp[key]
