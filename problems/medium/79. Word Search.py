@@ -64,7 +64,7 @@ if __name__ == '__main__':
         word="ABCB") is False
     assert solution.exist(
         board=[
-            ["C", "D", "D"],
+            ["D", "D", "D"],
             ["A", "A", "D"],
             ["B", "C", "D"]],
         word="AAB") is True
