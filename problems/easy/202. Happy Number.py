@@ -7,12 +7,12 @@ class Solution:
         return res_sum
 
     def is_happy(self, number: int) -> bool:
-        used_numbers = []
+        used_numbers = set()
         current_number = number
         while current_number not in used_numbers:
             if current_number == 1:
                 return True
-            used_numbers.append(current_number)
+            used_numbers.add(current_number)
             current_number = self.sum_square_numb(current_number)
 
         return False
@@ -51,3 +51,9 @@ class Solution:
 #             seen.add(current)
 #             current = digitSquareSum(current)
 #         return current == 1
+
+
+if __name__ == '__main__':
+    solution = Solution()
+    assert solution.intersection(nums1=[1, 2, 2, 1], nums2=[2, 2]) == [2]
+    assert solution.intersection(nums1=[4, 9, 5], nums2=[9, 4, 9, 8, 4]) == [9, 4]
