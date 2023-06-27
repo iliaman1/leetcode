@@ -3,7 +3,17 @@ from typing import List
 
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        ...
+        # check rows and columns
+        for i in range(9):
+            row_basket = set()
+            col_basket = set()
+            row = []
+            col = []
+            for j in range(9):
+                if board[i][j]
+                if board[i][j] not in row_basket and
+                row.append(board[i][j])
+                col.append(board[j][i])
 
 
 if __name__ == '__main__':
