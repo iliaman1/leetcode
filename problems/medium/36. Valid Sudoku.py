@@ -9,11 +9,11 @@ class Solution:
             col_basket = set()
             row = []
             col = []
-            for j in range(9):
-                if board[i][j]
-                if board[i][j] not in row_basket and
-                row.append(board[i][j])
-                col.append(board[j][i])
+            # for j in range(9):
+            #     if board[i][j]
+            #     if board[i][j] not in row_basket and
+            #     row.append(board[i][j])
+            #     col.append(board[j][i])
 
 
 if __name__ == '__main__':
