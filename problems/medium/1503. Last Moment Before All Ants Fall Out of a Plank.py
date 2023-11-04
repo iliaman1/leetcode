@@ -3,15 +3,7 @@ from typing import List
 
 class Solution:
     def getLastMoment(self, n: int, left: List[int], right: List[int]) -> int:
-        if not left:
-            left = [0]
-
-        if not right:
-            right = [n]
-
-        res = max(0, max(left), n - min(right))
-
-        return res
+        return max(max(left) if left else 0, n - min(right) if right else 0)
 
 
 if __name__ == '__main__':
