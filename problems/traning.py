@@ -219,7 +219,22 @@ class Solution:
             for i in find_row(n - 1):
                 res += self.kringe(i)
             return res
-        return find_row(n)[k-1]
+
+        return find_row(n)[k - 1]
+
 
 def isMonotonic(nums: List[int]) -> bool:
     return nums == sorted(nums) or nums == sorted(nums, reverse=True)
+
+
+def get_max_bowling_score(lst: list) -> int:
+    if not lst:
+        return 0
+
+    return max(
+        get_max_bowling_score(lst[1:]),
+        get_max_bowling_score(lst[1:]) + lst[0],
+        get_max_bowling_score(lst[2:]) + lst[0] * lst[1]) if len(lst) >= 2 else max(
+        get_max_bowling_score(lst[1:]),
+        get_max_bowling_score(lst[1:]) + lst[0]
+    )
