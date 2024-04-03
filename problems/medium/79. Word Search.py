@@ -1,49 +1,34 @@
-from pprint import pprint
 from typing import List
 
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        flag = True
+        def backtrack(i, j, k):
+            if k == len(word):
+                return True
+
+            if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[k]:
+                return False
+
+            temp = board[i][j]
+            board[i][j] = ''
+
+            if (
+                    backtrack(i + 1, j, k + 1) or
+                    backtrack(i - 1, j, k + 1) or
+                    backtrack(i, j + 1, k + 1) or
+                    backtrack(i, j - 1, k + 1)
+            ):
+                return True
+
+            board[i][j] = temp
+            return False
 
         for i in range(len(board)):
-            j = 0
-            while j < len(board[i]):
-                if board[i][j] == word[0]:
-                    used_letters = [(i, j)]
-                    current_index = 1
-                    while True:
-                        if len(used_letters) == len(word):
-                            return True
+            for j in range(len(board[0])):
+                if backtrack(i, j, 0):
+                    return True
 
-                        if i + 1 < len(board) and board[i + 1][j] == word[current_index] and (
-                                i + 1, j) not in used_letters:
-                            i += 1
-                            used_letters.append((i, j))
-                            current_index += 1
-                        elif i - 1 >= 0 and board[i - 1][j] == word[current_index] and (i - 1, j) not in used_letters:
-                            i -= 1
-                            used_letters.append((i, j))
-                            current_index += 1
-                        elif j + 1 < len(board[i]) and board[i][j + 1] == word[current_index] and (
-                                i, j + 1) not in used_letters:
-                            j += 1
-                            used_letters.append((i, j))
-                            current_index += 1
-                        elif j - 1 >= 0 and board[i][j - 1] == word[current_index] and (i, j - 1) not in used_letters:
-                            j -= 1
-                            used_letters.append((i, j))
-                            current_index += 1
-                        else:
-                            board[used_letters[-1][0]][used_letters[-1][1]] = '#'
-                            i = used_letters[0][0]
-                            j = used_letters[0][1] - 1
-                            for elm in board:
-                                print(elm)
-                            break
-
-                else:
-                    j += 1
         return False
 
 
