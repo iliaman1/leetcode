@@ -6,7 +6,8 @@ class TreeNode:
 
 
 class Solution:
-    def sumOfLeftLeaves(self, root: TreeNode) -> int:
+    @staticmethod
+    def sum_of_left_leaves(root: TreeNode) -> int:
         def helper(node, is_left=False):
             if not node:
                 return 0
