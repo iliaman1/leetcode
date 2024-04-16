@@ -19,3 +19,18 @@ FROM (
 )
 WHERE cum_sum <= 1000
 LIMIT 1
+
+-- Write your PostgreSQL query statement below
+with temp1 AS (
+select max(turn)
+FROM (
+SELECT *,
+    turn- CASE WHEN SUM(weight) OVER(ORDER BY turn) > 1000 THEN 1 ELSE 0 END as tt
+FROM Queue
+    ) tempo
+WHERE turn = tt
+    )
+
+select person_name
+from Queue
+WHERE turn IN (SELECT * FROM temp1)
