@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 class Solution:
     @staticmethod
     def longest_palindrome(s: str) -> int:
